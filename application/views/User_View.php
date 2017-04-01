@@ -45,7 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<h2><?php echo $maindata->name.' '.$maindata->surname; ?> </h2>
 		<p>email: <?php echo '<a href="mailto:'.$maindata->email.'">'.$maindata->email.'</a>'; ?></p>
 		<p>День рождения: <?php echo $maindata->birthday; ?> </p>
-
+		<form action="" method="GET">
+			<button type="submit" class="button" name="btn">Сгенерировать ключ для регистрации</button>
+			<p><?php echo $rkey; ?></p>
+		</form>
 		</div>
 		<div id="clear">
  		</div>

@@ -12,6 +12,14 @@ class User_Controller extends CI_Controller {
 		$data['title'] = "Профиль";
 
 		$data['maindata'] = $this->user_model->getData();
+		$data['rkey'] = '';
+
+		if(isset($_GET['btn'])) {
+			$this->load->model('registration_model');
+			$this->load->helper('url');
+			$data['rkey'] = site_url('/registration/'.$this->registration_model->addNewKey($this->session->id).'/');
+			unset($_GET);
+		}
 
 		$this->load->vars($data);
 		$this->load->view('user_view');

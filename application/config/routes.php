@@ -63,7 +63,7 @@ $route['check/(:num)'] = 'check_one_user_controller';
 $route['show/(:any)'] = 'show';
 $route['login'] = 'auth_controller';
 $route['login/(:any)'] = 'auth_controller';
-
+$route['registration/(:any)'] = 'registration_controller';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
