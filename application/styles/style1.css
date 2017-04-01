@@ -79,6 +79,7 @@
 		border: 1px solid #d0d0d0;
 		box-shadow: 0 0 8px #d0d0d0;
 		border-radius: 8px;
+		padding: 5px 0 0 0;
 		overflow: hidden;
 	}
 table {
@@ -103,4 +104,37 @@ tr:nth-child(odd) {
 }
 tr:nth-child(even) {
   background: #E8E6D1;
+}
+.line {
+    display: block;
+    border: none;
+    font-size: 16px;
+    color: #808080;
+    background: transparent;
+    border-bottom: 1px solid #8ba8af;
+    padding: 5px 2px 0 2px;
+}
+ 
+.line:focus {
+    outline: none;
+    border-bottom: 1px solid #dd4814;
+}
+
+.button {
+    background-color: #dd4814;
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.button:hover {
+	color: white;
+}
+.button:active {
+	background-color: #cc400f;
 }

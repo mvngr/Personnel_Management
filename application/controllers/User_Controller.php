@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User_Controller extends CI_Controller {
 	function User_Controller() {
 	parent::__construct();
+	$this->load->library('session');
  	$this->load->model('user_model');
 	}
 

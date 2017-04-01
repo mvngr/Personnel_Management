@@ -5,6 +5,7 @@ class Study_cont extends CI_Controller {
 
 	function Study_cont() {
 	parent::__construct();
+	$this->load->library('session');
  	$this->load->model('Study');
 	}
 

@@ -8,11 +8,12 @@ class GetJobM extends CI_Model {
  		parent::__construct();
  		$this->pages = 1;
  		$this->load->database();
+ 		$this->load->library('session');
  	}
 
  	function getQ() {
 
- 		$Q = $this->db->get('internal_orders');
+ 		$Q = $this->db->query("SELECT * FROM `internal_orders` WHERE `id_to_group` = ".$this->session->id_group.' ORDER BY `complete` ASC, id_to_user ASC');
 		
 		return $Q; 		
  	}
@@ -40,12 +41,15 @@ class GetJobM extends CI_Model {
  		$query = $this->getQ();
 
  		$table = '<table align="center">';
+
  		$table .= '<caption>Доступная работа:</caption>';
  		
  		$table .= '<th>Описание</th>';
  		$table .= '<th>Стоимость</th>';
  		$table .= '<th>Отправитель</th>';
  		$table .= '<th>Статус</th>';
+ 		$table .= '<th>Удалить</th>';
+
 
  		if($query->num_rows() > 0)
 	 		foreach ($query->result() as $row) {
@@ -55,11 +59,12 @@ class GetJobM extends CI_Model {
 	 			$table .= '</td><td>'.$name;
 	 			if($row->complete == 0)
 	 				if($row->id_to_user != 0)
-	 					$table .= '</td><td>Выполняется</td></tr>';
+	 					$table .= '</td><td>Выполняется';
 	 				else
-	 					$table .= '</td><td><a href="/job/'.$row->id.'/take/">Взять</button>'.'</td></tr>';
+	 					$table .= '</td><td><a href="/job/'.$row->id.'/take/">Взять</button>';
 	 			else
-	 				$table .= '</td><td><span style="color: green;">Выполнена</span></td></tr>';
+	 				$table .= '</td><td><span style="color: #6fa26f;">Выполнена</span>';
+	 			$table .= '</td><td><a href="/job/'.$row->id.'/delete">Удалить</a></td></tr>';
 	 		}
 
  		$table .= '</table>';

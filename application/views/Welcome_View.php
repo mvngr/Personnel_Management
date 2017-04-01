@@ -12,9 +12,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<div id="container">
 		<div id="body">
-			<h1>Страница в разработке</h1>
-			<h3><a href="/job/">Список работ</a></h3>
-			<h3><a href="/user/4">Пример информации о работнике</a></h3>
+			<p><a class="button" href="/job/">Список работ</a>
+			<a class="button" href="/user/4">Пример страницы работника</a>
+			<a class="button" href="/login/">Логин</a><br></p>
+			<a class="button" href="/check/4">Пример информации о работе человека</a>
+			<a class="button" href="/add/">Добавить работу</a>
  		</div>
  		<p class="footer"> footer</p>
  	</div>

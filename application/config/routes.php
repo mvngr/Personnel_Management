@@ -57,6 +57,13 @@ $route['job/(:num)'] = 'job';
 $route['job/(:num)/(:any)'] = 'job';
 $route['job'] = 'getjob';
 $route['user/(:num)'] = 'user_controller';
+$route['add'] = 'add_order_controller';
+$route['check'] = 'check_one_user_controller';
+$route['check/(:num)'] = 'check_one_user_controller';
+$route['show/(:any)'] = 'show';
+$route['login'] = 'auth_controller';
+$route['login/(:any)'] = 'auth_controller';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

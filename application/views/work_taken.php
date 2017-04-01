@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<div id="container">
 		<div id="body">
- 		<h2 align="center">Работа взята</h2>
+ 		<h2 align="center"><?php echo $str; ?></h2>
  		<br>
  		<p style="text-align: center;"><a href="/">На главную</a></p>
  		</div>
