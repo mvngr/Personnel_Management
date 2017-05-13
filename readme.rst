@@ -1,4 +1,8 @@
 ###################
+You can see demo version in ifmo-gis.ru
+###################
+
+###################
 What is CodeIgniter
 ###################
 
