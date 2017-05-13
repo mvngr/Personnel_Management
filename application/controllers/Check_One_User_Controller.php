@@ -8,17 +8,27 @@ class Check_One_User_Controller extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		
-	 	$this->load->model('check_one_user_model');
+	 	$this->load->model('Check_One_User_Model');
 
 	}
 
 	function index() {
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
 		$data['title'] = "Проверить работника";
 
-		$data['maindata'] = $this->check_one_user_model->getSimpleInfo();
+		$data['left'] = $this->Check_One_User_Model->getSimpleInfo();
+		$data['right'] = $this->Check_One_User_Model->getMyOrdersInfo();
+		$data['user'] = $this->Check_One_User_Model->queryUser();
+
+		#menu
+ 		$this->load->model('Header_Model');
+ 		$data['menu'] = $this->Header_Model->loadAll();
 
 		$this->load->vars($data);
-		$this->load->view('defaultview');
+		$this->load->view('Check_One_User_View');
 
 	}
 }

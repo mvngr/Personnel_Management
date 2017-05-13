@@ -1,0 +1,17 @@
+div.my-work{
+	width: calc(50% - 32px);
+	padding: 0 15px;
+	border-right: 1px solid #dd4814;
+	float: left;
+}
+div.my-orders{
+	float: right;
+	width: calc(50% - 31px);
+	padding: 0 15px;
+}
+#container a{
+	color: white;
+}
+#body a{
+	color: #dd4814;
+}

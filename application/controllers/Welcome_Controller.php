@@ -8,7 +8,16 @@ class Welcome_Controller extends CI_Controller {
 	}
 
 	function index(){
-		$this->load->view('welcome_view');
+
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
+ 		$this->load->model('Header_Model');
+ 		$data['menu'] = $this->Header_Model->loadAll();
+
+ 		$this->load->vars($data);
+		$this->load->view('Welcome_View');
 
 	}
 }

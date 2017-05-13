@@ -11,16 +11,22 @@ class Auth_Model extends CI_Model {
  		
  	}
 
+ 	function decode($str) {
+ 		$this->load->library('encrypt');
+ 		return $this->encrypt->decode($str);
+ 	}
+
  	function login($login, $pass) {
 
  		
 
- 		$Q = $this->db->query("SELECT * FROM `users` WHERE `login` LIKE '".$login."' AND `password` LIKE '".$pass."'")->result_array();
+ 		$Q = $this->db->query("SELECT * FROM `users` WHERE `login` LIKE '".$login."' LIMIT 1")->result();
 
 
  		if($Q == null)
  			return false;
  		$Q = $Q[0];
+
 
  		$arr = array();
 

@@ -1,0 +1,25 @@
+div.header{
+	padding: 10px 30px 0 0;
+	height: 30px;
+}
+div.left, div.right {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 13pt;
+}
+div.right {
+	float: right;
+}
+div.left {
+	padding-left: 35px;
+}
+div.clear{
+    clear: both;
+}
+div.header a:hover {
+	border-bottom: 2px solid #97310e;
+}
+div.header a {
+	padding-right: 5px;
+	padding-left: 5px;
+}

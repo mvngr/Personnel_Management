@@ -1,0 +1,65 @@
+div.mess_container {
+    width: 69%;
+}
+div.mess {
+    display: block;
+    border: none;
+    font-size: 16px;
+    color: #808080;
+    background: white;
+    padding: 6px;
+    margin: 1px;
+    background-color: #fafafa;
+}
+div.op_mess {
+    display: block;
+    border: none;
+    font-size: 16px;
+    color: #808080;
+    background: white;
+    padding: 6px;
+    margin: 1px;
+    text-align: right;
+    background-color: #cbd6ec;
+}
+div.right_col {
+    display: block;
+	width:27%; 
+	float: right; 
+	border-left: 1px solid #8ba8af;
+	padding: 5px 10px;
+
+}
+input.inp_area {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 25px;
+	max-height: 80px;
+	
+    display: block;
+    border: none;
+    box-shadow: 0 0 4px #d0d0d0;
+    border-radius: 3px;
+    color: #808080;
+    background: transparent;
+    margin: 4px 0 0 0;
+    padding: 0 0 0 4px;
+    border: 1px solid #cde2e7;
+}
+input.inp_area:focus {
+	outline: none;
+}
+div.header_mess {
+
+    display: block;
+    max-width: 69%;
+    min-width: 69%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 25px;
+
+}
+div.header_mess a {
+    font-size: 14pt;
+    font-weight: bold;
+}

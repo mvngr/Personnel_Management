@@ -15,9 +15,9 @@ class Registration_Controller extends CI_Controller {
 	 	else
 	 		$this->rkey = $this->uri->segment(2);
 
-	 	$this->load->model('registration_model');
+	 	$this->load->model('Registration_Model');
 
-	 	if(!$this->registration_model->checkKey($this->rkey))
+	 	if(!$this->Registration_Model->checkKey($this->rkey))
 	 		show_404(); #todo должен показывать 403
 
 	}
@@ -26,12 +26,13 @@ class Registration_Controller extends CI_Controller {
 
 		$data['title'] = "Закрытая регистрация";
 		$data['info'] = '';		
+		$data['select'] = $this->Registration_Model->getGroupsList();
 
 		if(isset($_POST) && array_key_exists('lname', $_POST))
-			$data['info'] = $this->registration_model->checkData();
+			$data['info'] = $this->Registration_Model->checkData();
 
 		$data['rkey'] = $this->rkey;
 		$this->load->vars($data);
-		$this->load->view('registration_view');
+		$this->load->view('Registration_View');
 	}
 }

@@ -50,20 +50,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'welcome_controller';
 
-$route['study'] = 'study_cont';
-$route['job/(:num)'] = 'job';
-$route['job/(:num)/(:any)'] = 'job';
-$route['job'] = 'getjob';
-$route['user/(:num)'] = 'user_controller';
-$route['add'] = 'add_order_controller';
-$route['check'] = 'check_one_user_controller';
-$route['check/(:num)'] = 'check_one_user_controller';
-$route['show/(:any)'] = 'show';
-$route['login'] = 'auth_controller';
-$route['login/(:any)'] = 'auth_controller';
-$route['registration/(:any)'] = 'registration_controller';
+$route['default_controller'] = 'Welcome_Controller';
+
+$route['study'] = 'Study_cont';
+$route['job/(:num)'] = 'Job';
+$route['job/(:num)/edit'] = 'Edit_Job_Controller';
+$route['job/(:num)/(:any)'] = 'Job';
+$route['job'] = 'GetJob';
+$route['user/(:num)'] = 'User_Controller';
+$route['user'] = 'User_Controller';
+$route['add'] = 'Add_Order_Controller';
+$route['check'] = 'Check_One_User_Controller';
+$route['check/(:num)'] = 'Check_One_User_Controller';
+$route['show/(:any)'] = 'Show';
+$route['login'] = 'Auth_Controller';
+$route['login/(:any)'] = 'Auth_Controller';
+$route['registration/(:any)'] = 'Registration_Controller';
+$route['temp'] = 'temp';
+$route['encrypt'] = 'Encrypt_Controller';
+$route['im'] = 'Message_Controller';
+$route['im/(:num)'] = 'Message_Controller';
+$route['im/new'] = 'New_Message_Controller';
+$route['chief'] = 'Chief_Controller';
+$route['t'] = 'Test_Controller';
+$route['news'] = 'News_Controller';
+$route['news/add'] = 'Add_News_Controller';
+$route['news/(:num)'] = 'One_News_Controller';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

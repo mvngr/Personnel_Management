@@ -1,0 +1,105 @@
+body {
+	margin: 0;
+	height: 100vh;
+  	width: 100vw;
+}
+
+#circle-left, #circle-right, #circle-down, #circle-up {
+
+    top: 50%;
+    left: 50%;
+
+	background: initial;
+    
+    -moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+
+	overflow: hidden;
+
+	position: fixed;
+}
+#triangle-left, #triangle-right, #triangle-up, #triangle-down {
+	position: absolute;
+	width: inherit;
+	height: inherit;
+}
+#my_background {
+	position: fixed;
+	height: 100vh;
+  	width: 100vw;
+	background-color: black;
+	opacity: 0.2;
+}
+#circle-left {
+	width: 400px;
+	height: 400px;
+	margin: -200px 0 0 -200px;
+}
+#triangle-left {
+	shape-outside: polygon(0 0, 50% 50%, 0 100%);
+	clip-path: polygon(0 0, 50% 50%, 0 100%);
+	background-color: #ffe273;
+
+	background-size:cover;
+}
+#circle-right {
+	width: 400px;
+	height: 400px;
+	margin: -200px 0 0 -200px;
+}
+#triangle-right {
+	shape-outside: polygon(100% 0, 50% 50%, 100% 100%);
+	clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+	background-color: #FFB273;
+}
+#circle-down {
+	width: 400px;
+	height: 400px;
+	margin: -200px 0 0 -200px;
+}
+#triangle-down {
+	shape-outside: polygon(0 100%, 50% 50%, 100% 100%);
+	clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+	background-color: #FF7373;
+}
+#circle-up {
+	width: 400px;
+	height: 400px;
+	margin: -200px 0 0 -200px;
+}
+#triangle-up {
+	shape-outside: polygon(0 0, 50% 50%, 0 100%);
+	clip-path: polygon(0 0, 50% 50%, 100% 0);
+	background-color: #67E667;	
+}
+.text {
+	position: inherit;
+	color: black;
+	font-size: 24pt;
+
+	top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+
+	background-color: red;
+
+}
+
+
+.container{
+  overflow:hidden;
+  height: 100vh;
+  width: 100vw;
+}
+.shaped{
+  float:left;
+  height:100vh;
+  width:40vw;
+  float:right;
+  background: green center top no-repeat;
+
+  shape-outside: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+  shape-margin: 20px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+}   

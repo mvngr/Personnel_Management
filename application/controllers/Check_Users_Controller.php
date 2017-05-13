@@ -5,16 +5,20 @@ class Check_Users_Controller extends CI_Controller {
 	function Check_Users_Controller() {
 		parent::__construct();
 		$this->load->library('session');
-	 	$this->load->model('check_users_model');
+	 	$this->load->model('Check_Users_Model');
 	}
 
 	function index(){
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
 		$data['title'] = "Проверить работников";
 
 		#$data['maindata'] = $this->getjobm->getInTable();
 
 		$this->load->vars($data);
-		$this->load->view('defaultview');
+		$this->load->view('DefaultView');
 
 	}
 }

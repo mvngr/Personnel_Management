@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</center>
 			</form>
  		</div>
- 		<p class="footer"> footer</p>
+ 		<? include "application/views/Footer_View.php" ?>
  	</div>
 </body>
 </html>

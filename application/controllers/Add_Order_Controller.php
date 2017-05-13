@@ -7,12 +7,17 @@ class Add_Order_Controller extends CI_Controller {
 
 		$this->load->library('session');
 		
-	 	$this->load->model('add_order_model');
+	 	$this->load->model('Add_Order_Model');
 	}
 
 	function index(){
 
-		$data['title'] = "Добавить заявку";
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
+
+		
 
 		#$data['maindata'] = $this->getjobm->getInTable();
 
@@ -20,12 +25,18 @@ class Add_Order_Controller extends CI_Controller {
 
 		if(isset($_GET))
 		{
-			$data = $this->add_order_model->checkRules();
+			$data = $this->Add_Order_Model->checkRules();
 			
 		}
 
+		$data['select'] = $this->Add_Order_Model->getGroupsList();
+
+		#menu
+ 		$this->load->model('Header_Model');
+ 		$data['menu'] = $this->Header_Model->loadAll();
+ 		
 		$this->load->vars($data);
 
-		$this->load->view('add_order_view');
+		$this->load->view('Add_Order_View');
 	}
 }

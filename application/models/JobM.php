@@ -9,7 +9,7 @@ class JobM extends CI_Model {
  		parent::__construct();
  		$this->load->database();
  		$this->load->library('session');
- 		$this->load->model('status_order');
+ 		$this->load->model('Status_Order');
 
  		
 
@@ -25,6 +25,10 @@ class JobM extends CI_Model {
 	 		$this->data = $this->data[0];
 
  			if($this->uri->segment(3)) {
+ 				if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
  				switch ($this->uri->segment(3)) {
  					case 'take':
  						if(array_key_exists('id', $_SESSION))
@@ -41,12 +45,24 @@ class JobM extends CI_Model {
  						header( 'Location: /job/'.$this->id );
  						break;
 
+ 					case 'cancel':
+ 						$this->cancel();
+ 						header( 'Location: /job/'.$this->id );
+ 						break;
+ 					case 'resume':
+ 						$this->resume();
+ 						header( 'Location: /job/'.$this->id );
+ 						break;
  					default:
  						show_404();
  						break;
  				}
  			}
  		}
+ 	}
+
+ 	function getEditData() {
+ 		return $this->data;
  	}
 
  	function checkAccess() {
@@ -56,10 +72,22 @@ class JobM extends CI_Model {
  			return true;
  	}
 
+ 	function cancel() {
+ 		$this->db->query("UPDATE `internal_orders` SET `id_to_user` = '0' WHERE `internal_orders`.`id` = ".$this->id.";");
+ 		$this->Status_Order->addComment($this->id, $this->session->id, 'отказался от заявки');
+ 		return;
+ 	}
+
+ 	function resume() {
+ 		$this->db->query("UPDATE `internal_orders` SET `complete` = '0' WHERE `internal_orders`.`id` = ".$this->id.";");
+ 		$this->Status_Order->addComment($this->id, $this->session->id, 'восстановил заявку');
+ 		return;
+ 	}
+
  	function endJob() {
  		if($this->checkAccess())
  			$this->db->query("UPDATE `internal_orders` SET `complete` = '1' WHERE `internal_orders`.`id` = ".$this->id);
- 		$Q2 = $this->status_order->addComment($this->id, $this->session->id, 'Заявка выполнена');
+ 		$Q2 = $this->Status_Order->addComment($this->id, $this->session->id, 'Заявка выполнена');
  	}
 
  	function deleteJob() {
@@ -70,9 +98,9 @@ class JobM extends CI_Model {
 
  	function setIdToUser($id_user) {
  		#UPDATE `internal_orders` SET `id_to_user` = '0' WHERE `internal_orders`.`id` = 24;
- 		$this->db->query("UPDATE `internal_orders` SET `id_to_user` = '$id_user' WHERE `internal_orders`.`id` = ".$this->id);
+ 		$this->db->query("UPDATE `internal_orders` SET `id_to_user` = '".$id_user."' WHERE `internal_orders`.`id` = ".$this->id);
 
- 		$Q2 = $this->status_order->addComment($this->id, $id_user, 'принял заявку');
+ 		$Q2 = $this->Status_Order->addComment($this->id, $id_user, 'принял заявку');
  		return;
  	} 
 
@@ -105,8 +133,7 @@ class JobM extends CI_Model {
  		$str .= '<p>Обрабатывает: '.$to_user.'</p>';
 
  		#записки о состоянии
- 		$this->load->model('status_order');
- 		$arr = $this->status_order->getStatus($this->id);
+ 		$arr = $this->Status_Order->getStatus($this->id);
  		$str .= '<br>';
  		foreach ($arr as $row)
  			$str .= '<font size="2px">'.$row.'</font><br>';
@@ -131,8 +158,13 @@ class JobM extends CI_Model {
  		if($this->data->id_to_user == 0 && $this->data->complete == 0)
  			$str .= ' | <a href="/job/'.$this->id.'/take/">Взять работу</a>';
  		if($this->checkAccess()) {
- 			if($this->data->complete == 0)
+ 			if($this->data->complete == 0) {
  				$str .= ' | <a href="/job/'.$this->id.'/end/">Закрыть заявку</a>';
+ 				$str .= ' | <a href="/job/'.$this->id.'/cancel/">Отказаться</a>';
+ 				$str .= ' | <a href="/job/'.$this->id.'/edit/">Редактировать</a>';
+ 			}
+ 			else
+ 				$str .= ' | <a href="/job/'.$this->id.'/resume/">Возобновить</a>';
  			$str .= ' | <a href="/job/'.$this->id.'/delete/">Удалить</a>';
  		}
  		$str .= '</p>';

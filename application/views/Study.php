@@ -7,16 +7,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </style>
  <head >
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title> <?php echo $title; ?> </title>
+  <title> test </title>
  </head>
 <body>
 	<div id="container">
 		<div id="body">
  <?php 
- 	echo '<title>'.$title.'</title>';
- 	echo $info.'<br>';
-
- 	echo $table;
+ 	foreach ($data as $row ) {
+ 		echo $row['param'].' -> '.'<input size="100" value="'.$row['encode'].'"> -> '.$row['decode'].'<br>';
+ 	}
  ?>
  		</div>
  		<p class="footer"> footer</p>

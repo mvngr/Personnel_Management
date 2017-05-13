@@ -3,7 +3,7 @@
 
 	body {
 		background-color: #fff;
-		margin: 40px auto;
+		margin: 10px auto;
 		max-width: 1024px;
 		font: 16px/24px normal "Helvetica Neue",Helvetica,Arial,sans-serif;
 		color: #808080;
@@ -29,6 +29,12 @@
 		margin: 0 0 14px 0;
 		padding: 5px 10px;
 		line-height: 40px;
+	}
+	hr {
+		border: none;
+		color: #dd4814;
+	    background-color: #dd4814;
+	    height: 1px;
 	}
 
 	h1 img {
@@ -72,14 +78,15 @@
 		margin: 20px 0 0 0;
 		background:#8ba8af;
 		color:#fff;
+		clear:both;
 	}
 
 	#container {
 		margin: 10px;
+		padding: 5px 0 0 0;
 		border: 1px solid #d0d0d0;
 		box-shadow: 0 0 8px #d0d0d0;
 		border-radius: 8px;
-		padding: 5px 0 0 0;
 		overflow: hidden;
 	}
 table {
@@ -133,8 +140,8 @@ tr:nth-child(even) {
     font-size: 16px;
 }
 .button:hover {
-	color: white;
+	color: #eee;
 }
 .button:active {
-	background-color: #cc400f;
+	background-color: #97310e;
 }

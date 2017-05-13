@@ -7,16 +7,23 @@ class GetJob extends CI_Controller {
 
 	$this->load->library('session');
 
- 	$this->load->model('getjobm');
+ 	$this->load->model('GetJobM');
 	}
 
 	function index(){
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
 		$data['title'] = "Работа";
 
-		$data['maindata'] = $this->getjobm->getInTable();
+		$data['maindata'] = $this->GetJobM->getInTable();
+		#menu
+ 		$this->load->model('Header_Model');
+ 		$data['menu'] = $this->Header_Model->loadAll();
 
 		$this->load->vars($data);
-		$this->load->view('defaultview');
+		$this->load->view('DefaultView');
 
 	}
 }

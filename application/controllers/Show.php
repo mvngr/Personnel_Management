@@ -16,7 +16,10 @@ class Show extends CI_Controller {
 	}
 
 	function index(){
-
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
 		switch ($this->str['str']) {
 			case 'job_taken':
 				$this->str['str'] = 'Работа взята';
@@ -34,7 +37,7 @@ class Show extends CI_Controller {
 		}
 
 		$this->load->vars($this->str);
-		$this->load->view('work_taken');
+		$this->load->view('Show_View');
 
 	}
 }

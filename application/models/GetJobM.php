@@ -9,15 +9,25 @@ class GetJobM extends CI_Model {
  		$this->pages = 1;
  		$this->load->database();
  		$this->load->library('session');
+
+
  	}
 
  	function getQ() {
+
+ 		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
 
  		$Q = $this->db->query("SELECT * FROM `internal_orders` WHERE `id_to_group` = ".$this->session->id_group.' ORDER BY `complete` ASC, id_to_user ASC');
 		
 		return $Q; 		
  	}
-
+ 	/**
+ 	 * @param  int - id пользователя в базе данных
+ 	 * @return array - ассоциативный массив со всей информацией
+ 	 */
  	function getUserName($id) {
  		$Q = $this->db->query('SELECT * FROM `users` WHERE `id` = '.$id)->result();
  		$Q = $Q[0];
@@ -36,6 +46,9 @@ class GetJobM extends CI_Model {
 	    }
 	} 
 
+	/**
+	 * @return string со всеми html вставками
+	 */
  	function getInTable() {
 
  		$query = $this->getQ();
@@ -53,10 +66,11 @@ class GetJobM extends CI_Model {
 
  		if($query->num_rows() > 0)
 	 		foreach ($query->result() as $row) {
+	 			
 	 			$name = $this->getUserName($row->id_from_user);
 	 			$table .= '<tr><td><a href="/job/'.$row->id.'">'.$this->cutStr($row->description, 41);
 	 			$table .= '</a></td><td>'.$row->cost;
-	 			$table .= '</td><td>'.$name;
+	 			$table .= '</td><td>'.'<a href="/user/'.$row->id_from_user.'/">'.$name.'</a>';
 	 			if($row->complete == 0)
 	 				if($row->id_to_user != 0)
 	 					$table .= '</td><td>Выполняется';

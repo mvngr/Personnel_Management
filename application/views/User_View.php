@@ -4,23 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="ru">
 <style type="text/css">
 	<? include "application/styles/style1.css" ?> 
+	<? include "application/styles/header_style.css" ?>
  
 #img {
-            background: #99CC99;
-            float: left;
-            overflow: hidden;
-            padding: 5px;
-            width: 200px;
-            height: 200px;
-            position: relative;
+    float: left;
+    overflow: hidden;
+    width: 200px;
+    max-height: 200px;
+    position: relative;
+    -moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border: 3px inset #dd4814;
+	margin-left: 10px;
 }
  
 #content {
-            background: #d2d0d2;
-            float: right;
- 			padding: 5px;
-            width: 70%;
-            height: 400px;
+    float: right;
+	padding: 5px;
+    width: calc(100% - 240px);
+    height: 400px;
+    border-left: 1px solid #dd4814;
 }
  
 #clear {
@@ -33,26 +36,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <title> <?php echo $title; ?> </title>
  </head>
 <body>
+<? include "application/views/Header_View.php" ?>
 	<div id="container">
-
-			 
 		<div id="img">
-		<?php echo '<img src="'.$maindata->id_avatar.'">'; ?>
-		
-		</div>
-			 
+			<?php echo '<img src="'.$maindata->id_avatar.'" width="200px" >'; ?>
+		</div> 
 		<div id="content">
+		<br>
 		<h2><?php echo $maindata->name.' '.$maindata->surname; ?> </h2>
+		<hr>
 		<p>email: <?php echo '<a href="mailto:'.$maindata->email.'">'.$maindata->email.'</a>'; ?></p>
 		<p>День рождения: <?php echo $maindata->birthday; ?> </p>
 		<form action="" method="GET">
-			<button type="submit" class="button" name="btn">Сгенерировать ключ для регистрации</button>
-			<p><?php echo $rkey; ?></p>
+			<p><input type="text" class="line" name="mess" placeholder="Написать работнику..."></p>
 		</form>
 		</div>
-		<div id="clear">
- 		</div>
- 		<p class="footer"> footer</p>
+		<div id="clear"></div>
+ 		<? include "application/views/Footer_View.php" ?>
  	</div>
 </body>
 </html>

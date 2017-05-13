@@ -5,24 +5,34 @@ class User_Controller extends CI_Controller {
 	function User_Controller() {
 	parent::__construct();
 	$this->load->library('session');
- 	$this->load->model('user_model');
+ 	$this->load->model('User_Model');
 	}
 
 	function index(){
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
+ 		if(!$this->uri->segment(2)){
+ 			header('Location: /user/'.$this->session->id);
+ 			exit();
+ 		}
 		$data['title'] = "Профиль";
 
-		$data['maindata'] = $this->user_model->getData();
-		$data['rkey'] = '';
-
-		if(isset($_GET['btn'])) {
-			$this->load->model('registration_model');
-			$this->load->helper('url');
-			$data['rkey'] = site_url('/registration/'.$this->registration_model->addNewKey($this->session->id).'/');
-			unset($_GET);
+		$data['maindata'] = $this->User_Model->getData();
+		
+		if(isset($_GET['mess']) && $this->uri->segment(2) != $this->session->id) {
+			$this->User_Model->newMess($_GET['mess']);
+			header('Location: /im/'.$this->uri->segment(2));
+			exit();
 		}
 
+		#menu
+ 		$this->load->model('Header_Model');
+ 		$data['menu'] = $this->Header_Model->loadAll();
+
 		$this->load->vars($data);
-		$this->load->view('user_view');
+		$this->load->view('User_View');
 
 	}
 }

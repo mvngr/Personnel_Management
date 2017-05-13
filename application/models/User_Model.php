@@ -10,6 +10,11 @@ class User_Model extends CI_Model {
  		$this->id = $this->uri->segment(2);
  	}
 
+ 	function decode($str) {
+ 		$this->load->library('encrypt');
+ 		return $this->encrypt->decode($str);
+ 	}
+
  	function getRouteToImg($id) {
  		#/user_guide_src/source/images/users/
  		$Q = $this->db->query("SELECT * FROM `images` WHERE `id` = ".$id)->result();
@@ -22,18 +27,15 @@ class User_Model extends CI_Model {
  		return $res;
  	}
 
- 	function resizeImg($route) {
- 		$config['image_library'] = 'gd2';
-		$config['source_image'] = $route;
-		$config['create_thumb'] = TRUE;
-		$config['maintain_ratio'] = TRUE;
-		$config['width'] = 200;
-		$config['height'] = 200;
-		$config['new_image'] = $route;
-		$this->load->library('image_lib', $config);
+ 	function newMess($mess) {
+ 		$this->db->query("INSERT INTO `messages` (`id`, `id_from_user`, `id_to_user`, `message`, `datetime`) VALUES (NULL, '".$this->session->id."', '".$this->id."', '".$mess."', CURRENT_TIMESTAMP);");
 
-		$img = $this->image_lib->resize();
-		return $img;
+ 		#Проверка на существование диалога
+ 		$Q1 = $this->db->query("SELECT `id` FROM `existing_conversations` WHERE `id_user1` = ".$this->session->id." AND `id_user2` = ".$this->id)->result();
+ 		$Q2 = $this->db->query("SELECT `id` FROM `existing_conversations` WHERE `id_user1` = ".$this->id." AND `id_user2` = ".$this->session->id)->result();
+ 		if(!($Q1 || $Q2))
+ 			$this->db->query("INSERT INTO `existing_conversations` (`id`, `id_user1`, `id_user2`, `datetime`) VALUES (NULL, '".$this->session->id."', '".$this->id."', CURRENT_TIMESTAMP);");
+ 		return;
  	}
 
  	function getData() {
@@ -42,8 +44,9 @@ class User_Model extends CI_Model {
  			show_404();
  		$Q = $Q[0];
 
- 		$img = $this->getRouteToImg($Q->id_avatar);
- 		$Q->id_avatar = $img;
+ 		$Q->id_avatar = $this->getRouteToImg($Q->id_avatar);
+
+ 		$Q->email = $this->decode($Q->email);
 
  		return $Q;
  	}

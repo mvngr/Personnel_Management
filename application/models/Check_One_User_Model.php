@@ -30,6 +30,7 @@ class Check_One_User_Model extends CI_Model {
  			show_404();
  		else
  			$Q = $Q[0];
+ 		$Q = '<a href="/user/'.$Q->id.'">'.$Q->name.' '.$Q->surname.'</a>';
 
  		return $Q;
  	}
@@ -40,47 +41,46 @@ class Check_One_User_Model extends CI_Model {
 	 	return $Q;
  	}
 
+ 	function queryMyOrders() {
+ 		$Q = $this->db->query('SELECT * FROM `internal_orders` WHERE `id_from_user` = '.$this->id.' AND `complete` = 0')->result();
+
+	 	return $Q;
+ 	}
+
  	function queryStatus($id) {
- 		$this->load->model('status_order');
- 		$arr = $this->status_order->getStatus($id);
+ 		$this->load->model('Status_Order');
+ 		$arr = $this->Status_Order->getStatus($id);
 
  		return $arr;
  	}
 
  	function getSimpleInfo() {
- 		$r = $this->getInfo();
- 		$str = $r['name'];
- 		$str .= '<br>';
- 		$str .= $r['tables'];
-
-	 	$str .= '<p align="center">';
-	 	$str .= '<a href="/">На главную</a>';
-	 	$str .= '</p>';
+ 		$str = $this->getInfo($this->queryOrders());
 
  		return $str;
  	}
 
- 	function getInfo() {
+ 	function getMyOrdersInfo() {
+ 		$str = $this->getInfo($this->queryMyOrders());
 
- 		$res = array();
+ 		return $str;
+ 	}
 
- 		$Q = $this->queryUser();
- 		$res['name'] = '<h2>'.$Q->name.' '.$Q->surname.'</h2>';
+ 	function getInfo($Q) {
+
  		$str = '<font size="2px">';
- 		$Q = $this->queryOrders();
  		foreach ($Q as $row) {
- 			$str .= '<table width="300px"><tr><th><a href="/job/'.$row->id.'">'.$row->description.'</a></th></tr>';
+ 			$str .= '<table><tr><th><a href="/job/'.$row->id.'">'.$row->description.'</a></th></tr>';
  			$arr = $this->queryStatus($row->id);
  			foreach ($arr as $ind) {
  				$str .= '<tr><td>'.$ind.'<td></tr>';
  			}
- 			$str .= '</table><br>';
+ 			$str .= '</table><br/><hr><br/>';
  		}
  		
  		$str .= '</font>';
- 		$res['tables'] = $str;
 
- 		return $res;
+ 		return $str;
  	}
  	
 

@@ -1,0 +1,32 @@
+div.mess_container {
+    display: block;
+    width: 55%;
+    padding: 15px;
+}
+div.right_col {
+    display: block;
+	width:45%; 
+	float: right; 
+	border-left: 1px solid #8ba8af;
+	padding: 5px 10px;
+
+}
+input.inp_area {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 25px;
+	max-height: 80px;
+	
+    display: block;
+    border: none;
+    box-shadow: 0 0 4px #d0d0d0;
+    border-radius: 3px;
+    color: #808080;
+    background: transparent;
+    margin: 4px 0 0 0;
+    padding: 0 0 0 4px;
+    border: 1px solid #cde2e7;
+}
+input.inp_area:focus {
+	outline: none;
+}

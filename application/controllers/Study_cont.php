@@ -10,11 +10,22 @@ class Study_cont extends CI_Controller {
 	}
 
 	function index(){
-	 	$data['title'] = "Заголовок из контроллера";
-	 	$data['info'] = "Данные из контроллера";
-		
-	 	$data['table'] = $this->Study->getAll();
-	 	$this-> load-> vars($data);
+		if(!array_key_exists('name', $_SESSION)){
+ 			header('Location: /login/');
+ 			exit();
+ 		}
+ 		$data = array();
+ 		$data[] = '123';
+ 		$data[] = 'boss';
+ 		$data[] = 'klerk';
+ 		$data[] = 'buhgalter';
+ 		$data[] = 'helloworld';
+ 		$data[] = 'pass';
+ 		$data[] = 'pass123';
+ 		$data[] = '123456';
+ 		$data[] = 'hello';
+	 	$temp['data'] = $this->Study->getAll($data);
+	 	$this-> load-> vars($temp);
 	 	$this-> load-> view('Study');
 	}
 }
