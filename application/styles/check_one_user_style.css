@@ -1,7 +1,6 @@
 div.my-work{
 	width: calc(50% - 32px);
 	padding: 0 15px;
-	border-right: 1px solid #dd4814;
 	float: left;
 }
 div.my-orders{
@@ -14,4 +13,14 @@ div.my-orders{
 }
 #body a{
 	color: #dd4814;
+}
+div.one_note{
+	padding: 5px;
+	margin: 5px 0 10px 0;
+	box-shadow: 0 0 1em #ddd;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+table{
+	width: 100%;
 }

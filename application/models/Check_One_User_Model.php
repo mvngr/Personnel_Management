@@ -14,7 +14,7 @@ class Check_One_User_Model extends CI_Model {
  			if(array_key_exists('id', $_SESSION))
  				$this->id = $this->session->id;
  			else
- 				show_404();
+ 				header('Location: /login');
  		}
 
  	}
@@ -70,12 +70,19 @@ class Check_One_User_Model extends CI_Model {
 
  		$str = '<font size="2px">';
  		foreach ($Q as $row) {
- 			$str .= '<table><tr><th><a href="/job/'.$row->id.'">'.$row->description.'</a></th></tr>';
+ 			$str .= '<div class="one_note"><table><tr><th><a href="/job/'.$row->id.'">'.$row->description.'</a></th></tr>';
  			$arr = $this->queryStatus($row->id);
+ 			$count = 0;
  			foreach ($arr as $ind) {
- 				$str .= '<tr><td>'.$ind.'<td></tr>';
+ 				if($count < 10)
+ 					$str .= '<tr><td>'.$ind.'<td></tr>';
+ 				else{
+ 					$str .= '<tr><td>...<td></tr>';
+ 					break;
+ 				}
+ 				$count++;
  			}
- 			$str .= '</table><br/><hr><br/>';
+ 			$str .= '</table></div>';
  		}
  		
  		$str .= '</font>';

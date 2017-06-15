@@ -22,10 +22,12 @@ class Auth_Model extends CI_Model {
 
  		$Q = $this->db->query("SELECT * FROM `users` WHERE `login` LIKE '".$login."' LIMIT 1")->result();
 
-
  		if($Q == null)
  			return false;
  		$Q = $Q[0];
+
+ 		if(!strcmp($pass, $this->decode($Q->password)))
+ 			return false;
 
 
  		$arr = array();

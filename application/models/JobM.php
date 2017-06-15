@@ -131,6 +131,7 @@ class JobM extends CI_Model {
  		$str .= '<p>От: '.$from_user.'</p>';
  		$str .= '<p>Отделу: '.$group.'</p>';
  		$str .= '<p>Обрабатывает: '.$to_user.'</p>';
+ 		$str .= '<p>Срок сдачи работы: '.$this->data->deadline.'</p>';
 
  		#записки о состоянии
  		$arr = $this->Status_Order->getStatus($this->id);
@@ -138,15 +139,12 @@ class JobM extends CI_Model {
  		foreach ($arr as $row)
  			$str .= '<font size="2px">'.$row.'</font><br>';
 
- 		#todo добавление комментария
  		if($this->data->complete == 0)
  			$str .= '<form action="" method="GET"><input type="text" class="line" autofocus name="comment" placeholder="Добавить комментарий"></form>';
 
  		if(isset($_GET) && array_key_exists('comment', $_GET)) {
  			if($_GET['comment'] != '')
 	 			$this->db->query("INSERT INTO `status_of_internal_orders` (`id`, `id_orders`, `id_author`, `description`, `datetime`) VALUES (NULL, '".$this->id."', '".$this->session->id."' , '".$_GET['comment']."', CURRENT_TIMESTAMP);");
-
-	 			#todo добавить конкретного пользователя
 
 	 			header('Location: /job/'.$this->id);
  		}

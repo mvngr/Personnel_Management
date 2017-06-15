@@ -13,7 +13,7 @@ class Encrypt_Model extends CI_Model {
  	}
 
  	function encode($msg) {
- 		$encrypted_string = $this->encrypt->encode($msg);
+ 		$encrypted_string = $this->necrypt->encode($msg);
  		return $encrypted_string;
  	}
 
@@ -28,7 +28,7 @@ class Encrypt_Model extends CI_Model {
  		$str = '';
 
  		foreach ($Q as $row) {
- 			$this->db->query("UPDATE `users` SET `password` = '".$this->encode($row->password)."' WHERE `users`.`id` = ".$row->id.";");
+ 			$this->db->query("UPDATE `users` SET `email` = '".$this->encode($row->email)."' WHERE `users`.`id` = ".$row->id.";");
  			
  			$str .= 'id = '.$row->id.' | '.$row->password.'<br>';
  		}

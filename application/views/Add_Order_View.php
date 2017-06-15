@@ -5,6 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <style type="text/css">
 	<? include "application/styles/style1.css" ?>
 	<? include "application/styles/header_style.css" ?>
+	.add-order-cont{
+		padding-left: 20%;
+	}
 </style>
  <head >
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -14,6 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? include "application/views/Header_View.php" ?>
 	<div id="container">
 		<div id="body">
+		<div class="add-order-cont">
 			<form action="/add/" method="GET">
 				<textarea name="order" class="line" rows="3" cols="50" placeholder="Введите зявку" required></textarea>
 				<br>
@@ -36,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			</form>
+		</div>
  		</div>
  		<? include "application/views/Footer_View.php" ?>
  	</div>

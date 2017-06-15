@@ -2,6 +2,7 @@
 	<div class="left">
 		<a href="/job/">Работа</a>
 		<a href="/add/">Запрос</a>
+		<a href="/check/">Моя работа</a>
 		<a href="/login/">Авторизация</a>
 	</div>
 	<div class="right">

@@ -4,6 +4,8 @@ class Study extends CI_Model {
 
  	function Study() {
  	  parent::__construct();
+    
+
  	}
 
  	function getAll($arr_str) {

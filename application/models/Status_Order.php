@@ -9,7 +9,7 @@ class Status_Order extends CI_Model {
  	}
 
  	function getStatus($id) {
- 		$Q = $this->db->query('SELECT * FROM `status_of_internal_orders` WHERE `id_orders` = '.$id);
+ 		$Q = $this->db->query('SELECT * FROM `status_of_internal_orders` WHERE `id_orders` = '.$id.' ORDER BY id DESC');
  		$data = array();
  		foreach ($Q->result() as $row) {
  			$data[] = $row->datetime.' > '.$this->getUserName($row->id_author).' > '.$row->description;

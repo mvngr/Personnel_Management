@@ -16,7 +16,8 @@ class One_News_Controller extends CI_Controller {
  			exit();
  		}
 
- 		
+ 		$data = array();
+ 		$data = array_merge($data, $this->One_News_Model->allInfo());
 
 		#menu
  		$this->load->model('Header_Model');

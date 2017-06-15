@@ -9,6 +9,8 @@ class Welcome_Controller extends CI_Controller {
 
 	function index(){
 
+		header('Location: /check');
+
 		if(!array_key_exists('name', $_SESSION)){
  			header('Location: /login/');
  			exit();

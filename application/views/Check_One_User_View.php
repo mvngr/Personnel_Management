@@ -6,6 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<? include "application/styles/style1.css" ?>
 	<? include "application/styles/check_one_user_style.css" ?>
 	<? include "application/styles/header_style.css" ?>
+	#container{
+		padding: 0px;
+	}
 </style>
  <head >
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
